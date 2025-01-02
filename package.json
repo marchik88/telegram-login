@@ -29,7 +29,8 @@
     "react-dom": "^19.0.0",
     "react-telegram-login": "^1.1.2",
     "tailwind-merge": "^2.6.0",
-    "tailwindcss-animate": "^1.0.7"
+    "tailwindcss-animate": "^1.0.7",
+    "telegram-login-button": "^0.1.0"
   },
   "devDependencies": {
     "@chromatic-com/storybook": "^3.2.3",

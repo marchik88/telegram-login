@@ -2,19 +2,14 @@
 
 import { useState } from "react";
 import Image from "next/image";
-import TelegramLoginButton from "react-telegram-login";
+import TelegramLoginButton, { TelegramUser } from 'telegram-login-button'
 
 export default function TelegramAuth() {
-  const [user, setUser] = useState({
+  const [user] = useState({
     first_name: '',
     photo_url: ''
   });
 
-  const handleTelegramResponse = (response: never) => {
-    // Save the user data after successful login
-    console.log("Telegram Response:", response);
-    setUser(response);
-  };
 
   return (
     <div
@@ -47,8 +42,7 @@ export default function TelegramAuth() {
           ) : (
             <TelegramLoginButton
               botName="marchugan_telegram_auth_bot"
-              dataOnauth={handleTelegramResponse}
-              className="rounded-full bg-foreground text-background px-4 py-2 hover:bg-[#383838] dark:hover:bg-[#ccc]"
+              dataOnauth={(user: TelegramUser) => console.log(user)}
             />
           )}
         </div>
