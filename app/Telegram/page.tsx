@@ -5,9 +5,12 @@ import Image from "next/image";
 import TelegramLoginButton from "react-telegram-login";
 
 export default function TelegramAuth() {
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState({
+    first_name: '',
+    photo_url: ''
+  });
 
-  const handleTelegramResponse = (response: any) => {
+  const handleTelegramResponse = (response: never) => {
     // Save the user data after successful login
     console.log("Telegram Response:", response);
     setUser(response);
