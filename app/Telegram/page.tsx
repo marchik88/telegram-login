@@ -46,7 +46,7 @@ export default function TelegramAuth() {
             </div>
           ) : (
             <TelegramLoginButton
-              botName="ReactAuthBot"
+              botName="marchugan_telegram_auth_bot"
               dataOnauth={handleTelegramResponse}
               className="rounded-full bg-foreground text-background px-4 py-2 hover:bg-[#383838] dark:hover:bg-[#ccc]"
             />
