@@ -22,7 +22,7 @@ export default function TelegramAuth() {
 
   return (
     <TelegramLoginButton
-      botName="your_bot_name"
+      botName="marchugan_telegram_auth_bot"
       dataOnauth={handleTelegramAuth}
     />
   );
