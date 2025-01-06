@@ -1,24 +1,31 @@
 import { NextAuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
+import { AuthDataValidator, objectToAuthDataMap } from "@telegram-auth/server";
 
 export const authOptions: NextAuthOptions = {
   providers: [
     CredentialsProvider({
-      name: "Credentials",
-      credentials: {
-        username: { label: "Username", type: "text" },
-        password: { label: "Password", type: "password" },
-      },
-      authorize: async (credentials) => {
-        if (credentials?.username === "admin" && credentials?.password === "admin") {
-          return { id: "1", name: "Admin", email: "admin@example.com" };
+      id: 'telegram-login',
+      name: 'Telegram Login',
+      credentials: {},
+      async authorize(credentials, req) {
+        console.log('process.env.BOT_TOKEN', process.env.BOT_TOKEN)
+        const validator = new AuthDataValidator({
+          botToken: `${process.env.BOT_TOKEN}`,
+        });
+
+        const data = objectToAuthDataMap(req.query || {});
+        const user = await validator.validate(data);
+
+        if (user.id && user.first_name) {
+          return {
+            id: user.id.toString(),
+            name: [user.first_name, user.last_name || ''].join(' '),
+            image: user.photo_url,
+          };
         }
         return null;
       },
     }),
   ],
-  session: {
-    strategy: "jwt",
-  },
-  secret: process.env.NEXTAUTH_SECRET,
 };
