@@ -1,20 +1,10 @@
-import "next-auth";
-import { DefaultSession } from "next-auth";
+import 'next-auth/jwt';
 
-declare module "next-auth" {
-  interface Session {
-    user: {
-      id: string;
-      first_name: string;
-      username?: string;
-      photo_url?: string;
-    } & DefaultSession["user"];
-  }
+// Read more at: https://next-auth.js.org/getting-started/typescript#module-augmentation
 
-  interface User {
-    id: string;
-    first_name: string;
-    username?: string;
-    photo_url?: string;
+declare module 'next-auth/jwt' {
+  interface JWT {
+    /** The user's role. */
+    userRole?: 'admin';
   }
 }

@@ -5,6 +5,7 @@ import TelegramLoginButton, { TelegramUser } from "telegram-login-button";
 
 export default function TelegramAuth() {
   const handleTelegramAuth = async (user: TelegramUser) => {
+    console.log('user', user)
     try {
       await signIn("credentials", {
         id: user.id.toString(),
